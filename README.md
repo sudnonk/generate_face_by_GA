@@ -5,11 +5,20 @@
 
 # 環境
 - PHP 7.1.15
-- PHP-Facedetect 0.1.0 https://github.com/infusion/PHP-Facedetect
-- OpenCV 3.4.0
 
 # やりたいこと
 1. PHPでランダムに個体生成
 2. 生成された画像を顔認識にかける
 3. 確度で交叉させる
 4. 繰り返し
+
+と思ってたけど顔認識の確度を返してくれるライブラリが見つからなかった
+
+なので以下の画像にいかに近い画像を作れるかに方針転換
+
+![ゴール画像](https://github.com/sudnonk/generate_face_by_GA/blob/master/goal.png)
+
+1. PHPでランダムに個体生成
+2. 生成された画像がゴール画像にいかに近いかをスコアとする
+3. 適当に交叉させる
+4. 1に戻る
