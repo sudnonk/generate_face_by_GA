@@ -20,9 +20,5 @@
         }
     }
 
-    imagepng($im2, "goal2.png", 0);
     header("Content-Type: image/png");
-    echo file_get_contents("goal2.png");
-
-    imagedestroy($im);
-    imagedestroy($im2);
+    imagepng($im2);
