@@ -10,9 +10,9 @@
             $rgb = imagecolorat($im, $i, $j);
 
             if ($rgb > 127) {
-                imagesetpixel($im2, $i, $j, $black);
-            } else {
                 imagesetpixel($im2, $i, $j, $white);
+            } else {
+                imagesetpixel($im2, $i, $j, $black);
             }
         }
     }
