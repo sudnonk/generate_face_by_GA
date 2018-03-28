@@ -1,7 +1,7 @@
 <?php
 
 
-    class Gene {
+    final class Gene {
         /** @var int $x */
         private $x;
         /** @var int $y */
@@ -18,42 +18,42 @@
         /**
          * @return int
          */
-        public function getX(): int {
+        final public function getX(): int {
             return $this->x;
         }
 
         /**
          * @param int $x
          */
-        private function setX(int $x): void {
+        final private function setX(int $x): void {
             $this->x = $x;
         }
 
         /**
          * @return int
          */
-        public function getY(): int {
+        final public function getY(): int {
             return $this->y;
         }
 
         /**
          * @param int $y
          */
-        private function setY(int $y): void {
+        final private function setY(int $y): void {
             $this->y = $y;
         }
 
         /**
          * @return Color
          */
-        public function getColor(): Color {
+        final public function getColor(): Color {
             return $this->color;
         }
 
         /**
          * @param Color $color
          */
-        private function setColor(Color $color): void {
+        final private function setColor(Color $color): void {
             $this->color = $color;
         }
 
@@ -63,7 +63,7 @@
          *
          * @return Gene
          */
-        public static function cross(Gene $parent1, Gene $parent2): Gene {
+        final public static function cross(Gene $parent1, Gene $parent2): Gene {
             if ($parent1->getX() !== $parent2->getX() || $parent1->getY() !== $parent2->getY()) {
                 die("cross invalid.");
             }
