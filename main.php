@@ -7,5 +7,4 @@
 
     $individuals = generate_random_individual(50);
 
-    header("Content-Type:image/png");
-    imagepng($individual->to_image(), $save_dir, 0, PNG_NO_FILTER);
+
