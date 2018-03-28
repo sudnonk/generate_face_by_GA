@@ -43,9 +43,9 @@
                     for ($y = 0; $y < Individual::height; $y++) {
                         $color = imagecolorat($goal_img, $x, $y);
                         if ($color === 1) {
-                            $color_code = 0;
-                        } else {
                             $color_code = 7;
+                        } else {
+                            $color_code = 0;
                         }
 
                         $genes[] = new Gene($x, $y, $color_code);
