@@ -1,4 +1,5 @@
 <?php
+    require "init.php";
 
     $genes = array();
     for ($x = 0; $x < Individual::width; $x++) {
