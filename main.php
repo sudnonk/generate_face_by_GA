@@ -1,7 +1,7 @@
 <?php
     require "init.php";
 
-    memory_get_usage();
+    var_dump(memory_get_usage());
     $genes = array();
     for ($x = 0; $x < Individual::width; $x++) {
         for ($y = 0; $y < Individual::height; $y++) {
@@ -12,7 +12,7 @@
     }
 
     $individual = new Individual($genes);
-memory_get_usage();
+var_dump(memory_get_usage());
 exit();
     header("Content-Type:image/png");
     imagepng($individual->to_image());
