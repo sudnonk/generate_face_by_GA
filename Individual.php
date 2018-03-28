@@ -32,7 +32,7 @@
         /**
          * @return resource
          */
-        public function to_image(): resource {
+        public function to_image() {
             /** @var resource $img */
             $img = imagecreate(self::width, self::height);
 

@@ -126,7 +126,7 @@
          *
          * @return array
          */
-        public static function getColorIds(resource $img): array {
+        public static function getColorIds($img): array {
             $color_ids = [];
             foreach (self::color_list as $color_code => $color_arr) {
                 $color_obj              = new Color($color_code);
