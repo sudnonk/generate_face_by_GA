@@ -45,15 +45,15 @@
         }
 
         /**
-         * @param Color $color1
-         * @param Color $color2
+         * @param int $color1
+         * @param int $color2
          *
          * @return int
          */
-        final public static function get_color_distance(Color $color1, Color $color2): int {
+        final public static function get_color_distance(int $color1, int $color2): int {
             $distance   = 0;
-            $color1_arr = $color1->getColor();
-            $color2_arr = $color2->getColor();
+            $color1_arr = self::color_list[$color1];
+            $color2_arr = self::color_list[$color2];
             for ($k = 0; $k < 3; $k++) {
                 if ($color1_arr[$k] !== $color2_arr[$k]) {
                     $distance++;

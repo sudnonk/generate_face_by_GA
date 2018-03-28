@@ -9,6 +9,9 @@
         /** @var int  height */
         const height = 256;
 
+        /** @var int $distance この個体の性能 */
+        private $distance = 0;
+
         /**
          * Individual constructor.
          *
@@ -16,6 +19,7 @@
          */
         public function __construct(array $genes) {
             $this->setGenes($genes);
+            $this->setDistance($this->calcDistance());
         }
 
         /**
@@ -30,10 +34,44 @@
         }
 
         /**
-         * @return Gene[]
+         * @return int
          */
-        protected function getGenes(): array {
-            return $this->genes;
+        private function calcDistance() {
+            /** @var Individual $goal */
+            $goal = Goal::getGoal();
+            /** @var int $distance 距離 */
+            $distance = 0;
+
+            for ($i = 0; $i < Individual::width * Individual::height; $i++) {
+                $goal_gene = $goal->getGene($i);
+                $self_gene = $this->getGene($i);
+                $distance  += Color::get_color_distance($goal_gene->getColorCode(), $self_gene->getColorCode());
+            }
+
+            return $distance;
+        }
+
+        /**
+         * @param int $distance
+         */
+        private function setDistance(int $distance) {
+            $this->distance = $distance;
+        }
+
+        /**
+         * @param int $num
+         *
+         * @return Gene
+         */
+        public function getGene(int $num): Gene {
+            return $this->genes[$num];
+        }
+
+        /**
+         * @return int
+         */
+        public function getDistance(): int {
+            return $this->distance;
         }
 
         /**
@@ -56,12 +94,4 @@
 
             return $img;
         }
-
-        public function getDistance() {
-            /** @var Individual $goal */
-            $goal     = Goal::getGoal();
-            $distance = 0;
-
-        }
-
     }
