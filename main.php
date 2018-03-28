@@ -1,16 +1,11 @@
 <?php
     require "init.php";
 
-    $genes = array();
-    for ($x = 0; $x < Individual::width; $x++) {
-        for ($y = 0; $y < Individual::height; $y++) {
-            /** @var int $color */
-            $color   = mt_rand(0, 7);
-            $genes[] = new Gene($x, $y, $color);
-        }
-    }
+    /** @var string $save_dir 作成した画像を保存するディレクトリ */
+    $save_dir = "imgs" . DIRECTORY_SEPARATOR . date("YmdHis");
+    mkdir($save_dir);
 
-    $individual = new Individual($genes);
+    $individuals = generate_random_individual(50);
 
     header("Content-Type:image/png");
-    imagepng($individual->to_image());
+    imagepng($individual->to_image(), $save_dir, 0, PNG_NO_FILTER);

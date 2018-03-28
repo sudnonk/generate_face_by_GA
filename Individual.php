@@ -50,4 +50,9 @@
             return $img;
         }
 
+        public function getDistance(){
+            $distance = 0;
+
+        }
+
     }
