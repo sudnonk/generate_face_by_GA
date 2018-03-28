@@ -10,7 +10,12 @@
                 for ($x = 0; $x < Individual::width; $x++) {
                     for ($y = 0; $y < Individual::height; $y++) {
                         $color = imagecolorat($goal_img, $x, $y);
-                        var_dump($color);
+                        $r     = ($color >> 16) & 0xFF;
+                        $g     = ($color >> 8) & 0xFF;
+                        $b     = $color & 0xFF;
+
+                        var_dump($r, $g, $b);
+                        echo "<br>";
                     }
                 }
             } else {
