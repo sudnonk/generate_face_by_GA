@@ -1,10 +1,40 @@
 <?php
 
     class Goal {
-        /** @var Individual $goal */
-        private static $goal;
+        /** @var Gene[] $genes */
+        private static $genes;
 
+        /**
+         * Goal constructor.
+         * Block new Goal();
+         */
         private function __construct() {
+        }
+
+        /**
+         * For singleton.
+         *
+         * @return Individual
+         */
+        public static function getGoal() {
+            if (
+                self::$genes !== null &&
+                count(self::$genes) === Individual::width * Individual::height &&
+                self::$genes[0] instanceof Gene
+            ) {
+
+            } else {
+                self::setGenes(self::imgToGenes());
+            }
+
+            return new Individual(self::$genes);
+        }
+
+        private static function setGenes(array $genes) {
+            self::$genes = $genes;
+        }
+
+        private static function imgToGenes(): array {
             $goal_img = imagecreatefrompng("goal.png");
             if (imagesx($goal_img) === Individual::width && imagesy($goal_img) === Individual::height) {
                 /** @var Gene[] $genes */
@@ -22,22 +52,9 @@
                     }
                 }
 
-                self::$goal = new Individual($genes);
+                return $genes;
             } else {
                 die("goal image invalid.");
             }
-        }
-
-        /**
-         * @return Individual
-         */
-        public static function getGoal() {
-            if (self::$goal !== null && self::$goal instanceof Individual) {
-
-            } else {
-                self::$goal = new Goal();
-            }
-
-            return self::$goal;
         }
     }

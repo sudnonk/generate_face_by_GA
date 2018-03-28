@@ -30,6 +30,13 @@
         }
 
         /**
+         * @return Gene[]
+         */
+        protected function getGenes(): array {
+            return $this->genes;
+        }
+
+        /**
          * @return resource
          */
         public function to_image() {
@@ -50,7 +57,8 @@
             return $img;
         }
 
-        public function getDistance(){
+        public function getDistance() {
+            $goal     = Goal::getGoal();
             $distance = 0;
 
         }
