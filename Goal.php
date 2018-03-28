@@ -1,6 +1,5 @@
 <?php
 
-
     class Goal {
         /** @var Individual $goal */
         private static $goal;
@@ -31,6 +30,4 @@
 
             return self::$goal;
         }
-
-
     }
