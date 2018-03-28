@@ -4,6 +4,9 @@
         /** @var Gene[] $genes */
         private static $genes;
 
+        /** @var Individual $goal */
+        private static $goal;
+
         /**
          * Goal constructor.
          * Block new Goal();
@@ -17,21 +20,21 @@
          * @return Individual
          */
         public static function getGoal() {
-            if (
-                self::$genes !== null &&
-                count(self::$genes) === Individual::width * Individual::height &&
-                self::$genes[0] instanceof Gene
-            ) {
-
+            if (self::$goal !== null && self::$goal instanceof Individual) {
+                return self::$goal;
             } else {
                 self::setGenes(self::imgToGenes());
+                self::setGoal();
+                return self::getGoal();
             }
-
-            return new Individual(self::$genes);
         }
 
         private static function setGenes(array $genes) {
             self::$genes = $genes;
+        }
+
+        private static function setGoal() {
+            self::$goal = new Individual(self::$genes);
         }
 
         private static function imgToGenes(): array {

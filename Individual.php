@@ -58,6 +58,7 @@
         }
 
         public function getDistance() {
+            /** @var Individual $goal */
             $goal     = Goal::getGoal();
             $distance = 0;
 
