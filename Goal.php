@@ -31,14 +31,13 @@
          */
         private static function setGoal(array $genes) {
             self::$goal = new Individual($genes);
+            var_dump(self::$goal);
         }
 
         /**
          * @return Gene[]
          */
         private static function imgToGenes(): array {
-            var_dump(self::$goal);
-            echo "imgToGenes called.";
             $goal_img = imagecreatefrompng("goal.png");
             if (imagesx($goal_img) === Individual::width && imagesy($goal_img) === Individual::height) {
                 /** @var Gene[] $genes */
