@@ -40,7 +40,7 @@
             $color_ids = Color::getColorIds($img);
             foreach ($this->genes as $gene) {
                 /** @var int $color_code */
-                $color_code = $gene->getColor()->getColorCode();
+                $color_code = $gene->getColorCode();
                 /** @var int $color_id */
                 $color_id = $color_ids[$color_code];
 

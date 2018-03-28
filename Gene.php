@@ -6,13 +6,13 @@
         private $x;
         /** @var int $y */
         private $y;
-        /** @var Color $color */
-        private $color;
+        /** @var int $color_code */
+        private $color_code;
 
-        public function __construct(int $x, int $y, Color $color) {
+        public function __construct(int $x, int $y, int $color) {
             $this->setX($x);
             $this->setY($y);
-            $this->setColor($color);
+            $this->setColorCode($color);
         }
 
         /**
@@ -44,17 +44,17 @@
         }
 
         /**
-         * @return Color
+         * @return int
          */
-        final public function getColor(): Color {
-            return $this->color;
+        final public function getColorCode(): int {
+            return $this->color_code;
         }
 
         /**
-         * @param Color $color
+         * @param int $color
          */
-        final private function setColor(Color $color): void {
-            $this->color = $color;
+        final private function setColorCode(int $color): void {
+            $this->color_code = $color;
         }
 
         /**
@@ -67,6 +67,6 @@
             if ($parent1->getX() !== $parent2->getX() || $parent1->getY() !== $parent2->getY()) {
                 die("cross invalid.");
             }
-            return new Gene($parent1->getX(), $parent1->getY(), Color::mix($parent1->getColor(), $parent2->getColor()));
+            return new Gene($parent1->getX(), $parent1->getY(), Color::mix($parent1->getColorCode(), $parent2->getColorCode()));
         }
     }

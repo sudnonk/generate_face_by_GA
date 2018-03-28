@@ -64,14 +64,14 @@
         }
 
         /**
-         * @param Color $color1
-         * @param Color $color2
+         * @param int $color1
+         * @param int $color2
          *
-         * @return Color
+         * @return int
          */
-        final public static function mix(Color $color1, Color $color2): Color {
-            $color1_arr = $color1->getColor();
-            $color2_arr = $color2->getColor();
+        final public static function mix(int $color1, int $color2): int {
+            $color1_arr = self::color_list[$color1];
+            $color2_arr = self::color_list[$color2];
             $new_color  = array();
 
             for ($k = 0; $k < 3; $k++) {
@@ -91,34 +91,46 @@
                 die("mix failed.");
             }
 
-            return new Color($key);
+            return $key;
         }
 
         /**
-         * @param Color $color
+         * @param int $color_code
          *
-         * @return int
+         * @return bool
          */
-        public static function getR(Color $color): int {
-            return ($color->getColor()[0] === 0) ? 0 : 255;
+        final public static function is_valid_color_code(int $color_code): bool {
+            return (isset(self::color_list[$color_code]));
         }
 
         /**
-         * @param Color $color
+         * @param int $color
          *
          * @return int
          */
-        public static function getG(Color $color): int {
-            return ($color->getColor()[1] === 0) ? 0 : 255;
+        public static function getR(int $color): int {
+            if (!self::is_valid_color_code($color)) die("invalid color code.");
+            return (self::color_list[$color][0] === 0) ? 0 : 255;
         }
 
         /**
-         * @param Color $color
+         * @param int $color
          *
          * @return int
          */
-        public static function getB(Color $color): int {
-            return ($color->getColor()[2] === 0) ? 0 : 255;
+        public static function getG(int $color): int {
+            if (!self::is_valid_color_code($color)) die("invalid color code.");
+            return (self::color_list[$color][1] === 0) ? 0 : 255;
+        }
+
+        /**
+         * @param int $color
+         *
+         * @return int
+         */
+        public static function getB(int $color): int {
+            if (!self::is_valid_color_code($color)) die("invalid color code.");
+            return (self::color_list[$color][2] === 0) ? 0 : 255;
         }
 
         /**
@@ -129,8 +141,7 @@
         public static function getColorIds($img): array {
             $color_ids = [];
             foreach (self::color_list as $color_code => $color_arr) {
-                $color_obj              = new Color($color_code);
-                $color_ids[$color_code] = imagecolorallocate($img, Color::getR($color_obj), Color::getG($color_obj), Color::getB($color_obj));
+                $color_ids[$color_code] = imagecolorallocate($img, Color::getR($color_code), Color::getG($color_code), Color::getB($color_code));
             }
 
             return $color_ids;

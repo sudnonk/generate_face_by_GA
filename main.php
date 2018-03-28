@@ -10,9 +10,9 @@
             $genes[] = new Gene($x, $y, $color);
         }
     }
-
+    var_dump(memory_get_usage());
     $individual = new Individual($genes);
-var_dump(memory_get_usage());
-exit();
+    var_dump(memory_get_usage());
+    exit();
     header("Content-Type:image/png");
     imagepng($individual->to_image());
