@@ -1,9 +1,6 @@
 <?php
 
     class Goal {
-        /** @var Gene[] $genes */
-        private static $genes;
-
         /** @var Individual $goal */
         private static $goal;
 
@@ -21,22 +18,24 @@
          */
         public static function getGoal() {
             if (self::$goal !== null && self::$goal instanceof Individual) {
-                return self::$goal;
+
             } else {
-                self::setGenes(self::imgToGenes());
-                self::setGoal();
-                return self::getGoal();
+                self::setGoal(self::imgToGenes());
             }
+
+            return self::$goal;
         }
 
-        private static function setGenes(array $genes) {
-            self::$genes = $genes;
+        /**
+         * @param Gene[] $genes
+         */
+        private static function setGoal(array $genes) {
+            self::$goal = new Individual($genes);
         }
 
-        private static function setGoal() {
-            self::$goal = new Individual(self::$genes);
-        }
-
+        /**
+         * @return Gene[]
+         */
         private static function imgToGenes(): array {
             $goal_img = imagecreatefrompng("goal.png");
             if (imagesx($goal_img) === Individual::width && imagesy($goal_img) === Individual::height) {
