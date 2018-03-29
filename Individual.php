@@ -9,9 +9,6 @@
         /** @var int  height */
         const height = 256;
 
-        /** @var int $distance この個体の性能 */
-        private $distance = 0;
-
         /**
          * Individual constructor.
          *
@@ -19,7 +16,6 @@
          */
         public function __construct(array $genes) {
             $this->setGenes($genes);
-            $this->setDistance($this->calcDistance());
         }
 
         /**
@@ -52,13 +48,6 @@
         }
 
         /**
-         * @param int $distance
-         */
-        private function setDistance(int $distance) {
-            $this->distance = $distance;
-        }
-
-        /**
          * @param int $num
          *
          * @return Gene
@@ -71,7 +60,7 @@
          * @return int
          */
         public function getDistance(): int {
-            return $this->distance;
+            return $this->calcDistance();
         }
 
         /**

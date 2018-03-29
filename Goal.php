@@ -17,15 +17,9 @@
          * @return Individual
          */
         public static function getGoal() {
-            var_dump(20, self::$goal);
             if (self::$goal !== null && self::$goal instanceof Individual) {
 
             } else {
-                $back = debug_backtrace();
-                foreach ($back as $v) {
-                    var_dump($v["file"], $v["function"], $v["class"]);
-                }
-
                 self::setGoal(self::imgToGenes());
             }
 
@@ -37,14 +31,13 @@
          */
         private static function setGoal(array $genes) {
             self::$goal = new Individual($genes);
-            var_dump(37, self::$goal);
         }
 
         /**
          * @return Gene[]
          */
         private static function imgToGenes(): array {
-            echo "imgToGenes called.\n";
+            var_dump("imgToGenes called.");
             $goal_img = imagecreatefrompng("goal.png");
             if (imagesx($goal_img) === Individual::width && imagesy($goal_img) === Individual::height) {
                 /** @var Gene[] $genes */
