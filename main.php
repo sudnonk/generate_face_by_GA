@@ -11,13 +11,13 @@
     $min_distance    = PHP_INT_MAX;
     $best_individual = null;
     foreach ($individuals as $individual) {
+        var_dump($min_distance);
         if ($individual->getDistance() < $min_distance) {
             $best_individual = $individual;
         }
     }
-
-    //header("Content-Type: image/png");
-    var_dump($best_individual->to_image());
+var_dump($best_individual);
     exit();
+    header("Content-Type: image/png");
     $img = $best_individual->to_image();
     imagepng($best_individual->to_image(), null, 0, PNG_FILTER_NONE);
