@@ -16,6 +16,5 @@
         }
     }
 
-    imagepng($best_individual->to_image(), $save_dir . DIRECTORY_SEPARATOR . "distance_{$min_distance}.png", 0, PNG_FILTER_NONE);
-
-
+    header("Content-Type: image/png");
+    imagepng($best_individual->to_image(), null, 0, PNG_FILTER_NONE);
