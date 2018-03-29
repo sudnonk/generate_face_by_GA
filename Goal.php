@@ -17,7 +17,7 @@
          * @return Individual
          */
         public static function getGoal() {
-            var_dump(self::$goal);
+            var_dump(20,self::$goal);
             if (self::$goal !== null && self::$goal instanceof Individual) {
 
             } else {
@@ -34,7 +34,7 @@
             if (self::$goal === null) {
                 self::$goal = new Individual($genes);
             }
-            var_dump(self::$goal);
+            var_dump(37,self::$goal);
         }
 
         /**
