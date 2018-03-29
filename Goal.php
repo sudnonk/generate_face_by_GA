@@ -23,7 +23,7 @@
             } else {
                 $back = debug_backtrace();
                 foreach ($back as $v) {
-                    var_dump($v["file"], $v["function"], $v["class"], $v["type"], $v["args"]);
+                    var_dump($v["file"], $v["function"], $v["class"]);
                 }
 
                 self::setGoal(self::imgToGenes());
