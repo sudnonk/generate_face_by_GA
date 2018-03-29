@@ -31,7 +31,9 @@
          * @param Gene[] $genes
          */
         private static function setGoal(array $genes) {
-            self::$goal = new Individual($genes);
+            if (self::$goal === null) {
+                self::$goal = new Individual($genes);
+            }
             var_dump(self::$goal);
         }
 
