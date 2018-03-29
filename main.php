@@ -7,14 +7,17 @@
     mkdir($save_dir);
 
     $individuals = generate_random_individual(50);
-
+    header("Content-Type: text/plain");
     $min_distance    = PHP_INT_MAX;
     $best_individual = null;
     foreach ($individuals as $individual) {
+        $distance = $individual->getDistance();
+        var_dump($distance, $min_distance);
         if ($individual->getDistance() < $min_distance) {
             $best_individual = $individual;
         }
     }
+    exit();
 
     header("Content-Type: image/png");
     $img = $best_individual->to_image();
