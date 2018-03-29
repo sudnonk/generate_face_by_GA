@@ -16,8 +16,7 @@
             $best_individual = $individual;
         }
     }
-var_dump($best_individual);
-    exit();
+    
     header("Content-Type: image/png");
     $img = $best_individual->to_image();
     imagepng($best_individual->to_image(), null, 0, PNG_FILTER_NONE);
