@@ -21,6 +21,7 @@
             if (self::$goal !== null && self::$goal instanceof Individual) {
 
             } else {
+                var_dump(debug_backtrace());
                 self::setGoal(self::imgToGenes());
             }
 
@@ -31,9 +32,7 @@
          * @param Gene[] $genes
          */
         private static function setGoal(array $genes) {
-            if (self::$goal === null) {
-                self::$goal = new Individual($genes);
-            }
+            self::$goal = new Individual($genes);
             var_dump(37,self::$goal);
         }
 
