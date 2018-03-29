@@ -21,7 +21,8 @@
             if (self::$goal !== null && self::$goal instanceof Individual) {
 
             } else {
-                var_dump(debug_backtrace());
+                $back = debug_backtrace();
+                var_dump($back["file"],$back["function"],$back["class"],$back["type"],$back["args"]);
                 self::setGoal(self::imgToGenes());
             }
 
