@@ -12,12 +12,11 @@
     $best_individual = null;
     foreach ($individuals as $individual) {
         $distance = $individual->getDistance();
-        var_dump($distance, $min_distance);
-        if ($individual->getDistance() < $min_distance) {
+        if ($distance < $min_distance) {
             $best_individual = $individual;
+            $min_distance = $distance;
         }
     }
-    exit();
 
     header("Content-Type: image/png");
     $img = $best_individual->to_image();
