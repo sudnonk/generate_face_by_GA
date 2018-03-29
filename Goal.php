@@ -17,12 +17,15 @@
          * @return Individual
          */
         public static function getGoal() {
-            var_dump(20,self::$goal);
+            var_dump(20, self::$goal);
             if (self::$goal !== null && self::$goal instanceof Individual) {
 
             } else {
                 $back = debug_backtrace();
-                var_dump($back["file"],$back["function"],$back["class"],$back["type"],$back["args"]);
+                foreach ($back as $v) {
+                    var_dump($v["file"], $v["function"], $v["class"], $v["type"], $v["args"]);
+                }
+
                 self::setGoal(self::imgToGenes());
             }
 
@@ -34,7 +37,7 @@
          */
         private static function setGoal(array $genes) {
             self::$goal = new Individual($genes);
-            var_dump(37,self::$goal);
+            var_dump(37, self::$goal);
         }
 
         /**
