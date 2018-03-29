@@ -17,6 +17,7 @@
          * @return Individual
          */
         public static function getGoal() {
+            var_dump(self::$goal);
             if (self::$goal !== null && self::$goal instanceof Individual) {
 
             } else {
@@ -38,7 +39,7 @@
          * @return Gene[]
          */
         private static function imgToGenes(): array {
-            echo "imgToGenes calle.\n";
+            echo "imgToGenes called.\n";
             $goal_img = imagecreatefrompng("goal.png");
             if (imagesx($goal_img) === Individual::width && imagesy($goal_img) === Individual::height) {
                 /** @var Gene[] $genes */
