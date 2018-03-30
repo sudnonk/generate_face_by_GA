@@ -7,16 +7,24 @@
     mkdir($save_dir);
 
     $individuals = generate_random_individual(50);
-    header("Content-Type: text/plain");
-    $min_distance    = PHP_INT_MAX;
-    $best_individual = null;
+
+    $scores = array();
     foreach ($individuals as $individual) {
         $distance = $individual->getDistance();
-        if ($distance < $min_distance) {
-            $best_individual = $individual;
-            $min_distance = $distance;
-        }
+        $scores[] = array($distance, $individual);
     }
+    unset($individuals);
+
+    uasort($scores, function ($a, $b) {
+        if ($a[0] === $b[0]) return 0;
+        if ($a[0] < $b[0]) return -1;
+        return 1;
+    });
+
+    foreach ($scores as $score => $a) {
+        var_dump($score);
+    }
+    exit();
 
     header("Content-Type: image/png");
     $img = $best_individual->to_image();
