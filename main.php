@@ -21,8 +21,8 @@
         return 1;
     });
 
-    foreach ($scores as $score => $a) {
-        var_dump($score);
+    foreach ($scores as $score) {
+        var_dump($score[0]);
     }
     exit();
 
