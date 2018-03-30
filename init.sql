@@ -1,0 +1,7 @@
+CREATE TABLE individual(
+  id INT NOT NULL AUTO_INCREMENT,
+  generation INT NOT NULL,
+  distance INT NOT NULL,
+  is_elite BOOL NOT NULL ,
+  individual VARCHAR(65535) NOT NULL
+) ENGINE INNODB,CHARSET utf8mb4l
