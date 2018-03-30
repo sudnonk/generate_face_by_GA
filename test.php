@@ -1,5 +1,5 @@
 <?php
     require "init.php";
-    header("Content-Type: test/plain");
+    header("Content-Type: text/plain");
     $a = generate_random_individual(1)[0];
-    var_dump(json_encode($a));
+    var_dump(serialize($a));
