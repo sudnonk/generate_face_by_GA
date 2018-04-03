@@ -23,7 +23,10 @@ while ($generation->getGenerationCount() < Experiment::getMaxGeneration()) {
 
     memory(24);
 
-    $generation = $generation->new_generation();
+    $new_generation = Generation::new_generation($generation);
+    unset($generation);
+    $generation = $new_generation;
+    unset($new_generation);
 
     memory(28);
 }

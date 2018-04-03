@@ -64,15 +64,14 @@ class Generation {
     }
 
     /**
-     * 新しい世代を作る
-     *
-     * @return Generation
+     * @param Generation $old_gen 古い世代
+     * @return Generation 新しい世代
      */
-    public function new_generation(): Generation {
-        $this->saveGeneration();
+    public static function new_generation(Generation $old_gen): Generation {
+        $old_gen->saveGeneration();
 
         /** @var Individual[] $elites その世代のトップ15 */
-        $elites = $this->getElite(15);
+        $elites = $old_gen->getElite(15);
 
         /** エリートから新世代を生成
          *  トップ5はそのまま残し、残りの10個から45個生成する。
@@ -87,8 +86,8 @@ class Generation {
                 $individuals[] = Individual::cross($elites[$i], $elites[$j]);
             }
         }
-        var_dump(count($individuals));
-        return new Generation($this->getGenerationCount() + 1, $individuals);
+
+        return new Generation($old_gen->getGenerationCount() + 1, $individuals);
     }
 
     public function getBestIndividual(): Individual {
