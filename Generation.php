@@ -10,6 +10,7 @@ class Generation {
     public function __construct(int $generation_count, array $individuals) {
         $this->setGenerationCount($generation_count);
         $this->setIndividuals($individuals);
+        mkdir(Experiment::getSavePath() . DIRECTORY_SEPARATOR . $this->getGenerationCount());
     }
 
     /**
@@ -56,9 +57,9 @@ class Generation {
         return $elites;
     }
 
-    private function saveGeneration(){
-        foreach ($this->individuals as $individual){
-            $individual->save(Experiment::getSavePath().DIRECTORY_SEPARATOR.$this->getGenerationCount());
+    private function saveGeneration() {
+        foreach ($this->individuals as $individual) {
+            $individual->save(Experiment::getSavePath() . DIRECTORY_SEPARATOR . $this->getGenerationCount());
         }
     }
 
@@ -90,7 +91,7 @@ class Generation {
         return new Generation($this->getGenerationCount() + 1, $individuals);
     }
 
-    public function getBestIndividual():Individual{
+    public function getBestIndividual(): Individual {
         return $this->getElite(1)[0];
     }
 }
