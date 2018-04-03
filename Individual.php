@@ -91,7 +91,7 @@ class Individual {
     }
 
     public function save(string $save_dir): void {
-        $save_path = $save_dir . DIRECTORY_SEPARATOR . $this->getDistance();
+        $save_path = $save_dir . DIRECTORY_SEPARATOR . $this->getDistance() . ".png";
 
         imagepng($this->to_image(), $save_path, 0, PNG_FILTER_NONE);
     }
