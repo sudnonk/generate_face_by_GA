@@ -58,7 +58,7 @@ class Generation {
 
     private function saveGeneration(){
         foreach ($this->individuals as $individual){
-            $individual->save(Experiment::getSavePath());
+            $individual->save(Experiment::getSavePath().DIRECTORY_SEPARATOR.$this->getGenerationCount());
         }
     }
 
