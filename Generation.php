@@ -82,7 +82,7 @@ class Generation {
             $individuals[] = $elites[$i];
         }
         for ($i = 5; $i < 15; $i++) {
-            for ($j = 5; $j < 15; $j++) {
+            for ($j = $i; $j < 15; $j++) {
                 if ($i === $j) continue;
                 $individuals[] = Individual::cross($elites[$i], $elites[$j]);
                 var_dump($i, $j);
