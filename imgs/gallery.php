@@ -10,7 +10,7 @@ foreach ($dirs as $dir) {
     echo "<h2>" . date("Y年m月d日 H時i分s秒", strtotime($dir)) . "</h2>";
     foreach (glob("$dir/*.png") as $file) {
         $base64 = base64_encode(file_get_contents($path . $file));
-        echo "<img src='data:image/png;base64," . $base64 . "' style='margin:5px'>";
+        echo "<div><img src='data:image/png;base64," . $base64 . "' style='margin:5px'><br><span>$file</span></div>";
     }
 }
 ?>
