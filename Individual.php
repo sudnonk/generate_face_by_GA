@@ -144,7 +144,8 @@ class Individual {
      */
     public static function cross(Individual $parent1, Individual $parent2): Individual {
         $new_genes = array();
-memory(147);
+        memory(147);
+        $count = 0;
         /** @var Gene[] $genes */
         foreach (Individual::getGenesGenerator($parent1, $parent2, Goal::getGoal()) as $genes) {
             $x = $genes[0]->getX();
@@ -161,7 +162,7 @@ memory(147);
             } else {
                 $new_genes[] = new Gene($x, $y, $color2);
             }
-            memory(164);
+            var_dump($count++);
         }
 
         return new Individual($new_genes);
