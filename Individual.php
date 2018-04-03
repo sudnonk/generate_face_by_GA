@@ -60,6 +60,26 @@ class Individual {
     }
 
     /**
+     * @return Generator
+     */
+    public function getGeneGenerator() {
+        foreach ($this->genes as $gene) {
+            yield $gene;
+        }
+    }
+
+    /**
+     * @param Individual $individual1
+     * @param Individual $individual2
+     * @return Generator
+     */
+    public static function getGenesGenerator(Individual $individual1, Individual $individual2, Individual $individual3) {
+        for ($i = 0; $i < Individual::width * Individual::height; $i++) {
+            yield array($individual1->getGene($i), $individual2->getGene($i), $individual3->getGene($i));
+        }
+    }
+
+    /**
      * @return int
      */
     public function getDistance(): int {
@@ -78,7 +98,7 @@ class Individual {
 
         /** @var array $color_ids */
         $color_ids = Color::getColorIds($img);
-        foreach ($this->genes as $gene) {
+        foreach ($this->getGeneGenerator() as $gene) {
             /** @var int $color_code */
             $color_code = $gene->getColorCode();
             /** @var int $color_id */
@@ -123,19 +143,19 @@ class Individual {
      * @return Individual
      */
     public static function cross(Individual $parent1, Individual $parent2): Individual {
-        $goal = Goal::getGoal();
-
         $new_genes = array();
-        for ($i = 0; $i < Individual::width * Individual::height; $i++) {
-            $x = $parent1->getGene($i)->getX();
-            $y = $parent1->getGene($i)->getY();
 
-            $color1 = $parent1->getGene($i)->getColorCode();
-            $color2 = $parent2->getGene($i)->getColorCode();
-            $color_goal = $goal->getGene($i)->getColorCode();
+        /** @var Gene[] $genes */
+        foreach (Individual::getGenesGenerator($parent1, $parent2, Goal::getGoal()) as $genes) {
+            $x = $genes[0]->getX();
+            $y = $genes[1]->getY();
+
+            $color1 = $genes[0]->getColorCode();
+            $color2 = $genes[1]->getColorCode();
+            $color_goal = $genes[3]->getColorCode();
+
             $dist1 = Color::get_color_distance($color1, $color_goal);
             $dist2 = Color::get_color_distance($color2, $color_goal);
-
             if ($dist1 < $dist2) {
                 $new_genes[] = new Gene($x, $y, $color1);
             } else {
