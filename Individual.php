@@ -168,6 +168,7 @@ class Individual {
 
 
     public function __destruct() {
+        var_dump("Individual::destruct called");
         foreach (array_keys($this->genes) as $key) {
             unset($this->genes[$key]);
         }
