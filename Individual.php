@@ -144,7 +144,7 @@ class Individual {
      */
     public static function cross(Individual $parent1, Individual $parent2): Individual {
         $new_genes = array();
-
+memory(147);
         /** @var Gene[] $genes */
         foreach (Individual::getGenesGenerator($parent1, $parent2, Goal::getGoal()) as $genes) {
             $x = $genes[0]->getX();
@@ -152,7 +152,7 @@ class Individual {
 
             $color1 = $genes[0]->getColorCode();
             $color2 = $genes[1]->getColorCode();
-            $color_goal = $genes[3]->getColorCode();
+            $color_goal = $genes[2]->getColorCode();
 
             $dist1 = Color::get_color_distance($color1, $color_goal);
             $dist2 = Color::get_color_distance($color2, $color_goal);
@@ -161,6 +161,7 @@ class Individual {
             } else {
                 $new_genes[] = new Gene($x, $y, $color2);
             }
+            memory(164);
         }
 
         return new Individual($new_genes);

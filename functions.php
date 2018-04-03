@@ -25,3 +25,7 @@
 
         return $individuals;
     }
+function memory($num) {
+    echo memory_get_usage();
+    echo "\n↑$num\n";
+}

@@ -28,7 +28,3 @@ while ($generation->getGenerationCount() < Experiment::getMaxGeneration()) {
     memory(28);
 }
 
-function memory($num) {
-    echo memory_get_usage();
-    echo "\n↑$num\n";
-}
