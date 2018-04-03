@@ -85,14 +85,20 @@ class Generation {
             for ($j = $i; $j < 15; $j++) {
                 if ($i === $j) continue;
                 $individuals[] = Individual::cross($elites[$i], $elites[$j]);
-                var_dump($i, $j);
             }
         }
-
+        var_dump(count($individuals));
         return new Generation($this->getGenerationCount() + 1, $individuals);
     }
 
     public function getBestIndividual(): Individual {
         return $this->getElite(1)[0];
+    }
+
+    public function __destruct() {
+        foreach (array_keys($this->individuals) as $key) {
+            unset($this->individuals[$key]);
+        }
+        unset($this->individuals);
     }
 }

@@ -165,4 +165,12 @@ class Individual {
 
         return new Individual($new_genes);
     }
+
+
+    public function __destruct() {
+        foreach (array_keys($this->genes) as $key) {
+            unset($this->genes[$key]);
+        }
+        unset($this->genes);
+    }
 }
