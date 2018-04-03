@@ -90,12 +90,22 @@ class Individual {
         return $img;
     }
 
+    /**
+     * @param string $save_dir
+     */
     public function save(string $save_dir): void {
         $save_path = $save_dir . DIRECTORY_SEPARATOR . $this->getDistance() . ".png";
 
         imagepng($this->to_image(), $save_path, 0, PNG_FILTER_NONE);
     }
 
+    /**
+     * usort用のコールバック関数
+     *
+     * @param Individual $a
+     * @param Individual $b
+     * @return int
+     */
     public static function sort(Individual $a, Individual $b): int {
         $a_distance = $a->getDistance();
         $b_distance = $b->getDistance();
@@ -103,5 +113,36 @@ class Individual {
         if ($a_distance === $b_distance) return 0;
         if ($a_distance < $b_distance) return -1;
         return 1;
+    }
+
+    /**
+     * 二つの親の遺伝子をそれぞれくらべ、より答えに近い遺伝子を子の遺伝子とする。
+     *
+     * @param Individual $parent1
+     * @param Individual $parent2
+     * @return Individual
+     */
+    public static function cross(Individual $parent1, Individual $parent2): Individual {
+        $goal = Goal::getGoal();
+
+        $new_genes = array();
+        for ($i = 0; $i < Individual::width * Individual::height; $i++) {
+            $x = $parent1->getGene($i)->getX();
+            $y = $parent1->getGene($i)->getY();
+
+            $color1 = $parent1->getGene($i)->getColorCode();
+            $color2 = $parent2->getGene($i)->getColorCode();
+            $color_goal = $goal->getGene($i)->getColorCode();
+            $dist1 = Color::get_color_distance($color1, $color_goal);
+            $dist2 = Color::get_color_distance($color2, $color_goal);
+
+            if ($dist1 < $dist2) {
+                $new_genes[] = new Gene($x, $y, $color1);
+            } else {
+                $new_genes[] = new Gene($x, $y, $color2);
+            }
+        }
+
+        return new Individual($new_genes);
     }
 }
