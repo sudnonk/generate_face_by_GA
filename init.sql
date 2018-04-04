@@ -3,7 +3,6 @@ CREATE TABLE individual (
   exp_num    INT  NOT NULL,
   generation INT  NOT NULL,
   distance   INT  NOT NULL,
-  is_elite   BOOL NOT NULL,
   individual TEXT NOT NULL
 )
   ENGINE INNODB, CHARSET utf8mb4;

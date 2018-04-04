@@ -4,16 +4,22 @@
         /** @var PDO $pdo */
         private static $pdo;
 
-        public function saveIndividual(int $generation, int $distance, bool $is_elite, Individual $individual): void {
-            $individual_serial = serialize($individual);
+        /**
+         * 個体をデータベースに保存する。
+         *
+         * @param int        $generation
+         * @param int        $distance
+         * @param Individual $individual
+         */
+        public static function saveIndividual(int $generation, int $distance, Individual $individual): void {
+            $individual_base64 = $individual->to_base64();
 
             $pdo  = self::getPDO();
-            $stmt = $pdo->prepare("insert into individual(generation,exp_num,distance,is_elite,individual) value (?,?,?,?,?)");
-            $stmt->bindValue(1, $generation, PDO::PARAM_INT);
-            $stmt->bindValue(2, Experiment::getExpNum(), PDO::PARAM_INT);
+            $stmt = $pdo->prepare("insert into individual(exp_num,generation,distance,individual) value (?,?,?,?)");
+            $stmt->bindValue(1, Experiment::getExpNum(), PDO::PARAM_INT);
+            $stmt->bindValue(2, $generation, PDO::PARAM_INT);
             $stmt->bindValue(3, $distance, PDO::PARAM_INT);
-            $stmt->bindValue(4, $is_elite, PDO::PARAM_INT);
-            $stmt->bindValue(5, $individual_serial, PDO::PARAM_STR);
+            $stmt->bindValue(4, $individual_base64, PDO::PARAM_STR);
 
             $stmt->execute();
         }
