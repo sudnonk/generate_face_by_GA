@@ -95,7 +95,6 @@ class Generation {
     }
 
     public function __destruct() {
-        var_dump("Generation::destruct called");
         memory(99);
         foreach (array_keys($this->individuals) as $key) {
             $this->individuals[$key] = null;

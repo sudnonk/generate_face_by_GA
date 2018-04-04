@@ -16,6 +16,7 @@ memory(14);
 /** @var Generation $generation */
 $generation = new Generation(0, $individuals);
 
+unset($individuals);
 memory(19);
 
 while ($generation->getGenerationCount() < Experiment::getMaxGeneration()) {
