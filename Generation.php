@@ -98,13 +98,9 @@
         }
 
         public function __destruct() {
-            memory(99);
             foreach (array_keys($this->individuals) as $key) {
-                $this->individuals[$key] = null;
                 unset($this->individuals[$key]);
             }
-            memory(104);
             unset($this->individuals);
-            memory(106);
         }
     }
