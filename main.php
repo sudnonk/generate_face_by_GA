@@ -1,5 +1,5 @@
 <?php
-ini_set("memory_limit", "1G");
+ini_set("memory_limit", "2G");
 require "init.php";
 
 memory(5);
