@@ -41,7 +41,7 @@
          * @return int[]
          */
         public static function getPastExpNums(): array {
-            $pdo = self::$pdo;
+            $pdo = self::getPDO();
 
             $stmt = $pdo->query("select distinct exp_num from individual");
             return $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -53,7 +53,7 @@
          * @return array("generation"=>int,"distance"=>int,"individual"=>string)
          */
         public static function getIndividualsByExpNum(int $expnum): array {
-            $stmt = self::$pdo->query("select generation,distance,individual from individual where exp_num = '$expnum'");
+            $stmt = self::getPDO()->query("select generation,distance,individual from individual where exp_num = '$expnum'");
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
